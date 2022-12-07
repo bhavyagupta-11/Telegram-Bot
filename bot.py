@@ -5,7 +5,7 @@ from telegram import Bot, Update, ReplyKeyboardMarkup
 from conversationalbot import get_reply, fetch_news, topics_keyboard
 
 #enable logging which send the data of the recieved message like name time and level of importance
-FORMAT = '%(asctime)s %(clientip)-15s %(user)-8s %(message)s'
+FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 logging.basicConfig(format=FORMAT, level=logging.INFO)
 logger= logging.getLogger(__name__)
 
@@ -73,7 +73,7 @@ bot=Bot(TOKEN)
 #create a public url for your server using ngrok
 
 try:
-    bot.set_webhook("https://acc7-2402-3a80-1c4b-51e-8076-1ba6-700c-a877.in.ngrok.io/" + TOKEN)
+    bot.set_webhook("https://0d49-42-105-139-30.in.ngrok.io/" + TOKEN)
 except Exception as e:
     print(e)
 
@@ -81,7 +81,7 @@ dp=Dispatcher(bot,None)
 
 dp.add_handler(CommandHandler("start",start))
 dp.add_handler(CommandHandler("help",_help))
-dp.add_handler(MessageHandler(Filters.text,echo_text))
+dp.add_handler(MessageHandler(Filters.text,reply_text))
 dp.add_handler(MessageHandler(Filters.sticker,echo_sticker))
 dp.add_error_handler(error)
 
